@@ -62,7 +62,7 @@ myApp.controller('AnimalController', ['$scope', '$http', '$location', function($
 
   console.log('http: ', $http);
   $scope.selectAction = function() {
-    console.log($scope.selectedAnimal);
+    console.log($scope.selectedAnimal.type);
     $location.path("/" + $scope.selectedAnimal.type);
   }
 }]);

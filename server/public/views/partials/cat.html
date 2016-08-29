@@ -1,6 +1,6 @@
 <h1>Find a Pet</h1>
 <div ng-controller="AnimalController">
-  <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal for animal in animalType">
+  <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal.display for animal in animalType">
       <option value="">Select an animal...</option>
   </select>
   <!-- <div class="faveCount">
@@ -9,7 +9,7 @@
 </div>
 <div class="container" ng-controller="catController">
   <div class="randomAnimalBorder">
-    <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
+    <img ng-if="animal.media.photos.photo[2].$t" class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
   </div>
   <h2>{{animal.name.$t}}</h2>
   <div class="animalDescription">
