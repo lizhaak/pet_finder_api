@@ -1,0 +1,44 @@
+body {
+  margin: 5px 15px 0 15px;
+}
+
+select {
+  width: 125px;
+  margin: 13px 15px 0 0;
+  float: left;
+}
+
+.favorites {
+  width: 125px;
+  float: left;
+  margin: 10px 15px 0 0;
+}
+
+.faveCount {
+  width: 150px;
+  border: 1px solid black;
+  float: left;
+  margin: 0 0 0 150px;
+  padding: 0 15px;
+}
+
+.randomAnimalBorder {
+  float: left;
+  border: 1px solid black;
+  width: 300px;
+  margin: 5px 15px 0 0;
+}
+
+.randomAnimal {
+  width: 100%;
+  height: 100%;
+}
+
+.animalDescription {
+  width: 400px;
+  float: left;
+}
+
+.addToFav {
+  float: right;
+}

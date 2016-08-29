@@ -1,0 +1,14 @@
+<h1>Find a Pet</h1>
+<div class="container" ng-controller="dogController">
+    <!-- <button ng-click="getRandomPet()">Find Random Pet</button> -->
+    <div class="randomAnimalBorder">
+      <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
+    </div>
+    <h2>{{animal.name.$t}}</h2>
+    <div class="animalDescription">
+      <p>{{animal.description.$t}}</p>
+    </div>
+    <div class="addToFav">
+      <button ng-click="addToFavorites()">Add to Favorites</button>
+    </div>
+</div>
