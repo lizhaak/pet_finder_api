@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var favorites = require('./routes/favorites');
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Serve back static files
 app.use(express.static(path.join(__dirname, './public')));

@@ -49,11 +49,21 @@ myApp.config(["$routeProvider", function($routeProvider) {
 }]);
 
 myApp.controller('AnimalController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-  $scope.animalType = ['barnyard', 'bird', 'cat', 'dog', 'horse', 'pig', 'reptile', 'smallfurry'];
+  $scope.animalType = [
+    {type: 'barnyard', display: 'Barnyard Animal'},
+    {type: 'bird', display: 'Bird'},
+    {type: 'cat', display: 'Cat'},
+    {type: 'dog', display: 'Dog'},
+    {type: 'horse', display: 'Horse'},
+    {type: 'pig', display: 'Pig'},
+    {type: 'reptile', display: 'Reptile'},
+    {type: 'smallfurry', display: 'Small Furry Animal'},
+  ];
+
   console.log('http: ', $http);
   $scope.selectAction = function() {
     console.log($scope.selectedAnimal);
-    $location.path("/" + $scope.selectedAnimal);
+    $location.path("/" + $scope.selectedAnimal.type);
   }
 }]);
 

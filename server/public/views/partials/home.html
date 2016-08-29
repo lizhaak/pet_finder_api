@@ -1,6 +1,6 @@
 <h1>Find a Pet</h1>
 <div ng-controller="AnimalController">
-    <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal for animal in animalType">
+    <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal.display for animal in animalType">
         <option value="">Select an animal...</option>
     </select>
 
