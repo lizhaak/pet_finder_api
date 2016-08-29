@@ -1,6 +1,10 @@
 <h1>Find a Pet</h1>
+<div ng-controller="AnimalController">
+    <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal for animal in animalType">
+        <option value="">Select an animal...</option>
+    </select>
+</div>
 <div class="container" ng-controller="dogController">
-    <!-- <button ng-click="getRandomPet()">Find Random Pet</button> -->
     <div class="randomAnimalBorder">
       <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
     </div>

@@ -1,16 +1,18 @@
 <h1>Find a Pet</h1>
+<div ng-controller="AnimalController">
+  <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal for animal in animalType">
+      <option value="">Select an animal...</option>
+  </select>
+</div>
 <div class="container" ng-controller="birdController">
-  <div class="col-md-6">
-    <button ng-click="getRandomPet()">Find Random Pet</button>
-    <h2>{{animal.name.$t}}</h2>
+  <div class="randomAnimalBorder">
+    <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
+  </div>
+  <h2>{{animal.name.$t}}</h2>
+  <div class="animalDescription">
     <p>{{animal.description.$t}}</p>
   </div>
-  <!-- <div class="col-md-6">
-    <input type="text" ng-model="breed" placeholder="Enter bird type" />
-    <button ng-click="getBreeds()">Get Breeds</button>
-    <h2 ng-if="breeds != undefined">Breeds of {{breed}}</h2>
-    <ul>
-      <li ng-repeat="breed in breeds">{{breed.$t}}</li>
-    </ul>
-  </div> -->
+  <div class="addToFav">
+    <button ng-click="addToFavorites()">Add to Favorites</button>
+  </div>
 </div>

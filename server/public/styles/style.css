@@ -35,10 +35,15 @@ select {
 }
 
 .animalDescription {
-  width: 400px;
+  width: 500px;
   float: left;
 }
 
 .addToFav {
+  width: 800px;
+  margin: 15px;
+}
+
+.addToFav > button {
   float: right;
 }
