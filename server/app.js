@@ -1,9 +1,15 @@
 var express = require("express");
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
+var favorites = require('./routes/favorites');
+
+app.use(bodyParser.json());
 
 // Serve back static files
 app.use(express.static(path.join(__dirname, './public')));
+
+app.use('/favorites', favorites);
 
 app.get("/jq", function(req,res,next){
     res.sendFile(path.join(__dirname, "./public/views/index.html"));

@@ -4,6 +4,9 @@
         <option value="">Select an animal...</option>
     </select>
 </div>
+<div ng-controller="FavoritesController">
+    <button ng-click="getFavorites()">View Favorites</button>
+</div>
 <div class="container" ng-controller="dogController">
     <div class="randomAnimalBorder">
       <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />

@@ -38,9 +38,9 @@ myApp.config(["$routeProvider", function($routeProvider) {
       templateUrl: "/views/partials/smallfurry.html",
       controller: "smallfurryController"
     }).
-    when("/test", {
-      templateUrl: "/views/partials/test.html",
-      controller: "pickController"
+    when("/favorites", {
+      templateUrl: "/views/partials/favorites.html",
+      controller: "FavoritesController"
     }).
     otherwise({
       redirectTo: "/home"
@@ -54,6 +54,20 @@ myApp.controller('AnimalController', ['$scope', '$http', '$location', function($
   $scope.selectAction = function() {
     console.log($scope.selectedAnimal);
     $location.path("/" + $scope.selectedAnimal);
+  }
+}]);
+
+myApp.controller('FavoritesController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+  console.log('favorites controller is working');
+  $scope.getFavorites = function () {
+    $location.path('/favorites');
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response works');
+        var animalArray = response;
+        console.log('animalArray: ', animalArray);
+
+      });
   }
 }]);
 
@@ -84,6 +98,41 @@ myApp.controller('barnyardController', ['$scope', '$http', function($scope, $htt
     )
   }
 
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
+  }
 
 
 }]);
@@ -114,11 +163,48 @@ myApp.controller('birdController', ['$scope', '$http', function($scope, $http) {
     )
   }
 
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
+  }
+
 }]);
 
 myApp.controller('catController', ['$scope', '$http', function($scope, $http) {
   var key = '6a55deefc1db87940051b82878df62d7';
   var baseURL = 'http://api.petfinder.com/';
+  // var faveCounter = 0;
 
   getRandomPet();
 
@@ -140,6 +226,42 @@ myApp.controller('catController', ['$scope', '$http', function($scope, $http) {
         $scope.breed = $scope.animal.animal.$t;
       }
     )
+  }
+
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
   }
 
 }]);
@@ -170,6 +292,42 @@ myApp.controller('dogController', ['$scope', '$http', function($scope, $http) {
     )
   }
 
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
+  }
+
 }]);
 
 myApp.controller('horseController', ['$scope', '$http', function($scope, $http) {
@@ -196,6 +354,42 @@ myApp.controller('horseController', ['$scope', '$http', function($scope, $http) 
         $scope.breed = $scope.animal.animal.$t;
       }
     )
+  }
+
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
   }
 
 }]);
@@ -226,6 +420,42 @@ myApp.controller('pigController', ['$scope', '$http', function($scope, $http) {
     )
   }
 
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
+  }
+
 }]);
 
 myApp.controller('reptileController', ['$scope', '$http', function($scope, $http) {
@@ -254,6 +484,41 @@ myApp.controller('reptileController', ['$scope', '$http', function($scope, $http
     )
   }
 
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
+  }
 }]);
 
 myApp.controller('smallfurryController', ['$scope', '$http', function($scope, $http) {
@@ -282,4 +547,39 @@ myApp.controller('smallfurryController', ['$scope', '$http', function($scope, $h
     )
   }
 
+  $scope.addToFavorites = function() {
+    console.log('clicked addToFavorites');
+    console.log('$scope.animal: ', $scope.animal);
+    $scope.faveCounter++;
+    console.log('scope.faveCounter++: ', $scope.faveCounter);
+
+    function Pet(id, name, imageurl, description) {
+      this.id = id;
+      this.name = name;
+      this.imageurl = imageurl;
+      var comment = description;
+      if (comment == "" || comment == undefined) {
+        comment = "no description";
+      }
+      if (comment.length > 100) {
+        comment = comment.substring(0, 100);
+      }
+      this.description = comment;
+    }
+
+    var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
+
+    $http.post('/favorites', faveAnimal)
+      .then(function() {
+      console.log("Added to Favorites!");
+      $scope.getFavorites();
+    });
+  }
+
+  $scope.getFavorites = function () {
+    $http.get('/favorites')
+      .then(function(response) {
+        console.log('GET response: ', response);
+      });
+  }
 }]);
