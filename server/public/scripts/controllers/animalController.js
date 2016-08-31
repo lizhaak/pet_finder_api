@@ -49,22 +49,19 @@ myApp.controller('AnimalController', ['$scope', '$http', '$location', 'DataFacto
     )
   }
 
-    function Pet(id, name, imageurl, description) {
-      this.id = id;
-      this.name = name;
-      this.imageurl = imageurl;
-      var comment = description;
-      if (comment == "" || comment == undefined) {
-        comment = "no description";
-      }
-      if (comment.length > 100) {
-        comment = comment.substring(0, 100);
-      }
-      this.description = comment;
+  function Pet(id, name, imageurl, description) {
+    this.id = id;
+    this.name = name;
+    this.imageurl = imageurl;
+    var comment = description;
+    if (comment == "" || comment == undefined) {
+      comment = "no description";
     }
-
-    // var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
-
+    if (comment.length > 100) {
+      comment = comment.substring(0, 100);
+    }
+    this.description = comment;
+  }
 
   $scope.addToFavorites = function () {
     console.log('add this pet to favorites...');
@@ -73,39 +70,8 @@ myApp.controller('AnimalController', ['$scope', '$http', '$location', 'DataFacto
     });
   }
 
-  // $scope.addToFavorites = function() {
-  //   console.log('clicked addToFavorites');
-  //   console.log('$scope.animal: ', $scope.animal);
-  //   $scope.faveCounter++;
-  //   console.log('scope.faveCounter++: ', $scope.faveCounter);
-  //
-  //   function Pet(id, name, imageurl, description) {
-  //     this.id = id;
-  //     this.name = name;
-  //     this.imageurl = imageurl;
-  //     var comment = description;
-  //     if (comment == "" || comment == undefined) {
-  //       comment = "no description";
-  //     }
-  //     if (comment.length > 100) {
-  //       comment = comment.substring(0, 100);
-  //     }
-  //     this.description = comment;
-  //   }
-  //
-  //   var faveAnimal = new Pet($scope.animal.id.$t, $scope.animal.name.$t, $scope.animal.media.photos.photo[2].$t, $scope.animal.description.$t);
-  //
-  //   $http.post('/favorites', faveAnimal)
-  //     .then(function() {
-  //     console.log("Added to Favorites!");
-  //     $scope.getFavorites();
-  //   });
-  // }
-  //
-  //   $scope.getFavorites = function () {
-  //     $http.get('/favorites')
-  //       .then(function(response) {
-  //         console.log('GET response: ', response);
-  //       });
-  //   }
+  $scope.viewFavorites = function () {
+    $location.path("/favorites");
+  }
+
 }]);

@@ -26,9 +26,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
     console.log('DF getting data from server!');
     var promise = $http.get('/favorites/count').then(function(response) {
 
-      animals = response.data;
-      console.log('DF Async data response: ', animals);
-      return animals;
+      total = response.data;
+      console.log('DF Async data response: ', total);
+      return total;
     });
       return promise;
   };
