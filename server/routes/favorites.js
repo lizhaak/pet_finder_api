@@ -11,9 +11,9 @@ router.post('/', function(req, res) {
       res.sendStatus(500);
     }
 
-    client.query('INSERT INTO favoritepets (id, name, imageurl, description) ' +
+    client.query('INSERT INTO favoritepets (pet_id, pet_name, pet_image_url, pet_description) ' +
                 'VALUES ($1, $2, $3, $4)',
-                [favoritePet.id, favoritePet.name, favoritePet.imageurl, favoritePet.description],
+                [favoritePet.animal.id, favoritePet.animal.name, favoritePet.animal.imageurl, favoritePet.animal.description],
                 function(err, result) {
                   done();
 
@@ -46,5 +46,27 @@ router.get('/', function(req, res) {
                   });
   });
 });
+
+router.get('/count', function(req,res) {
+  pg.connect(connectionString, function(err, client, done) {
+    if(err) {
+      res.sendStatus(500);
+    }
+
+    client.query("SELECT COUNT(id) as count FROM favoritepets",
+                  function(err, result) {
+                    done();
+
+                    if (err) {
+                      console.log("error: ", err);
+                      res.sendStatus(500);
+                    }
+
+                    res.send(result.rows[0]);
+                  });
+  });
+
+});
+
 
 module.exports = router;

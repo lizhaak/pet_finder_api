@@ -4,7 +4,10 @@
       <option value="">Select an animal...</option>
   </select>
 </div>
-<div class="container" ng-controller="birdController">
+<div class="container">
+  <div class="faveCount">
+      <h4>Fave Count: <span>{{favCount}}</span></h4>
+  </div>
   <div class="randomAnimalBorder">
     <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
   </div>

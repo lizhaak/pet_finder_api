@@ -1,13 +1,26 @@
 <h1>Find a Pet</h1>
-<div ng-controller="AnimalController">
+<div>
     <select ng-model="selectedAnimal" ng-change="selectAction()" ng-options="animal.display for animal in animalType">
         <option value="">Select an animal...</option>
     </select>
 
     <div>
-        <button class="favorites">View Favorites</button>
+        <button ng-click="viewFavorites()" class="favorites">View Favorites</button>
     </div>
     <div class="faveCount">
-        <h4>Fave Count: <span>{{faveCounter}}</span></h4>
+        <h4>Fave Count: <span>{{faveCount.$$state.value.count}}</span></h4>
     </div>
 </div>
+
+    <div class="container">
+      <div class="randomAnimalBorder">
+        <img class="randomAnimal" src="{{animal.media.photos.photo[2].$t}}" />
+      </div>
+      <h2>{{animal.name.$t}}</h2>
+      <div class="animalDescription">
+        <p>{{animal.description.$t}}</p>
+      </div>
+      <div class="addToFav">
+        <button ng-click="addToFavorites()">Add to Favorites</button>
+      </div>
+    </div>
